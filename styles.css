@@ -124,14 +124,14 @@ h2 {
 }
 
 .site-header.is-scrolled {
-  background: rgba(251, 250, 246, .97);
+  background: rgba(251, 250, 246, .55);
   box-shadow: 0 10px 30px rgba(3, 45, 49, .06);
 }
 
 .brand {
   display: flex;
   flex-direction: column;
-  font-size: 1.75rem;
+  font-size: 1.5rem;
   font-weight: 700;
   line-height: 1.1;
   letter-spacing: -.01em;
@@ -143,6 +143,7 @@ h2 {
   gap: 56px;
   color: var(--ink-soft);
   font-size: 1.125rem;
+  font-weight: 500;
 }
 
 .site-header nav a {
@@ -379,6 +380,68 @@ h2 {
   line-height: 1.152;
 }
 
+/* Hero — compact version. Tweak the sizes here; the current hero above is untouched. */
+.hero--compact {
+  --hero-h1-size: clamp(2.3rem, 4.4vw, 3.75rem);      /* headline (current: clamp(2.6rem, 5.4vw, 4.625rem)) */
+  --hero-lead-size: clamp(1.1rem, 1.6vw, 1.4rem);     /* hero-lead (current: clamp(1.25rem, 2vw, 1.75rem)) */
+  --hero-sig-name-size: clamp(1.2rem, 1.6vw, 1.5rem); /* signature name (current: clamp(1.4rem, 2vw, 1.875rem)) */
+  --hero-sig-role-size: clamp(.95rem, 1.1vw, 1.05rem); /* signature role (current: clamp(1rem, 1.4vw, 1.25rem)) */
+  --hero-photo-width: 440px;                          /* photo + quote block (current: 516px) */
+  --hero-text-width: 560px;                           /* text column; narrower = photo sits closer to the text (current: fills the remaining space) */
+  --hero-gap: 106px;                                   /* space between text and photo (current: 70px) */
+  --hero-top-space: 60px;                             /* space above the headline (current: 147px) */
+  --hero-quote-size: clamp(.95rem, 1.1vw, 1.05rem);   /* quote text (current: clamp(1rem, 1.4vw, 1.25rem)) */
+  --hero-quote-mark: 2.8rem;                          /* quote mark (current: 3.75rem) */
+  --hero-quote-padding: 18px 22px 22px;               /* quote box padding (current: 22px 29px 28px) */
+  --hero-quote-overlap: 100px;                        /* how far the quote overlaps the photo (current: 135px) */
+  padding-top: var(--hero-top-space);
+}
+
+.hero--compact h1 {
+  font-size: var(--hero-h1-size);
+}
+
+.hero--compact .hero-lead {
+  font-size: var(--hero-lead-size);
+}
+
+.hero--compact .signature strong {
+  font-size: var(--hero-sig-name-size);
+}
+
+.hero--compact .signature span {
+  font-size: var(--hero-sig-role-size);
+}
+
+/* Desktop only: photo pulled in next to the text, smaller quote. Below 900px both heroes share the mobile layout. */
+@media (min-width: 901px) {
+  .hero--compact .hero-body {
+    grid-template-columns: minmax(0, var(--hero-text-width)) minmax(0, var(--hero-photo-width));
+    justify-content: start;
+    gap: var(--hero-gap);
+  }
+
+  .hero--compact .hero-visual {
+    grid-template-rows: auto var(--hero-quote-overlap) auto;
+    margin-right: 0;
+  }
+
+  .hero--compact .visual-note {
+    min-height: 0;
+    padding: var(--hero-quote-padding);
+  }
+
+  .hero--compact .note-index {
+    height: calc(var(--hero-quote-mark) * .6);
+    font-size: var(--hero-quote-mark);
+  }
+
+  .hero--compact .visual-note p {
+    margin-top: 14px;
+    font-size: var(--hero-quote-size);
+  }
+}
+
 /* About */
 .perspective {
   padding: 210px 0 174px;
@@ -411,7 +474,10 @@ h2 {
 .perspective-body>p {
   max-width: 588px;
   margin-bottom: 26px;
-  font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+  /* color: #2f4541; */
+  color: rgb(47, 69, 65, 0.85);
+  font-family: var(--grotesk);
+  font-size: clamp(1.05rem, 1.4vw, 1.23rem);
   line-height: 1.4;
 }
 
@@ -427,7 +493,7 @@ h2 {
   margin: 0;
   color: var(--ink-soft);
   font-family: var(--serif);
-  font-size: clamp(1.3rem, 2vw, 1.75rem);
+  font-size: clamp(1.3rem, 2vw, 1.6rem);
   line-height: 1.286;
 }
 
@@ -515,7 +581,12 @@ h2 {
 }
 
 .kicker-line {
-  margin-bottom: 3px;
+  margin-bottom: 8px;
+}
+
+.tsp2-head .kicker-line,
+.contact-inner .kicker-line {
+  margin-inline: auto;
 }
 
 .directions-heading .eyebrow {
@@ -817,9 +888,9 @@ h2 {
 
 .feature-kicker {
   margin: 0;
-  font-family: var(--grotesk);
+  /* font-family: var(--grotesk); */
   font-weight: 500;
-  font-size: clamp(1.9rem, 3.4vw, 2.9rem);
+  font-size: clamp(1.6rem, 2.3vw, 2.2rem);
   line-height: 1.02;
   letter-spacing: -.035em;
 }
@@ -831,14 +902,18 @@ h2 {
 }
 
 .feature-list li {
+  --feature-size: clamp(1.15rem, 1.6vw, 1.35rem);
+  --feature-leading: 1.3;
   display: grid;
   grid-template-columns: 42px 1fr;
   gap: 18px;
   padding: 18px 0;
   border-top: 1px solid rgba(18, 41, 39, .12);
-  font-family: var(--text);
-  font-size: clamp(1.05rem, 1.5vw, 1.2rem);
-  line-height: 1.4;
+  color: var(--ink-soft);
+  font-size: var(--feature-size);
+  font-weight: 500;
+  line-height: var(--feature-leading);
+  letter-spacing: -.2px;
 }
 
 .feature-list li:first-child {
@@ -852,7 +927,7 @@ h2 {
   font-family: var(--serif);
   font-size: 1.65rem;
   font-style: italic;
-  line-height: calc(1.4 * clamp(1.05rem, 1.5vw, 1.2rem));
+  line-height: calc(var(--feature-leading) * var(--feature-size));
 }
 
 .experience-head {
@@ -963,7 +1038,7 @@ h2 {
   max-width: 740px;
   margin: 0 auto;
   color: var(--t-ink-2);
-  font-size: clamp(1.15rem, 1.6vw, 1.4rem);
+  font-size: clamp(1.15rem, 1.6vw, 1.3rem);
   line-height: 1.55;
 }
 
@@ -1002,7 +1077,7 @@ h2 {
 .tsp2-dim {
   z-index: 2;
   border-radius: 92px 2px 2px 2px;
-  background: linear-gradient(180deg, rgba(2, 37, 41, .16) 0%, rgba(2, 37, 41, .26) 100%);
+  /* background: linear-gradient(180deg, rgba(2, 37, 41, .05) 0%, rgba(2, 37, 41, .16) 100%); */
   pointer-events: none;
 }
 
@@ -1022,8 +1097,10 @@ h2 {
 
 .tsp2-when h3 {
   margin: 0 0 36px;
-  font-size: clamp(1.6rem, 2.3vw, 2.4rem);
+  font-size: clamp(1.6rem, 2.3vw, 2.2rem);
   font-weight: 500;
+  color: rgb(200, 211, 211);
+  font-family: var(--display);
   line-height: 1.08;
   letter-spacing: -.045em;
 }
@@ -1067,8 +1144,11 @@ h2 {
   gap: 18px;
   padding: 18px 0;
   border-top: 1px solid var(--t-line);
-  font-size: 1.2rem;
-  line-height: 1.4;
+  font-size: 1.35rem;
+  font-weight: 500;
+  letter-spacing: -.2px;
+  color: rgb(200, 211, 211);
+  line-height: var(--feature-leading);
 }
 
 /* Number sits on the first text line: its line-height equals the text line height (1.2rem × 1.4) */
@@ -1093,7 +1173,7 @@ h2 {
 
 .tsp2-hol-head h3 {
   margin: 0 0 28px;
-  font-size: clamp(2.4rem, 4.2vw, 4.4rem);
+  font-size: clamp(1.6rem, 2.3vw, 2.2rem);
   line-height: 1;
 }
 
@@ -1101,8 +1181,8 @@ h2 {
   max-width: 470px;
   margin: 0;
   color: var(--t-ink-2);
-  font-size: 1.05rem;
-  line-height: 1.7;
+  font-size: 1.32rem;
+  line-height: 1.4;
 }
 
 /* Highlighter stroke under the phrase, slightly uneven via the gradient edges */
@@ -1124,6 +1204,9 @@ h2 {
 
 .tsp2-hol-cards article {
   padding: 30px 40px 6px 0;
+  font-family: var(--grotesk);
+  line-height: 1.25;
+  font-size: 1.05rem;
 }
 
 .tsp2-hol-cards article+article {
@@ -1134,32 +1217,6 @@ h2 {
 .tsp2-hol-cards p:last-child {
   margin: 0;
   color: var(--t-ink-3);
-}
-
-/* Bio */
-.bio {
-  padding: 100px 0;
-  background: var(--mist);
-}
-
-.bio-inner {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 70px;
-  align-items: end;
-  padding: 62px;
-  border: 1px solid rgba(44, 136, 127, .15);
-  background: rgba(255, 255, 255, .65);
-}
-
-.bio h2 {
-  margin-bottom: 24px;
-  font-size: clamp(2.2rem, 4.4vw, 4.8rem);
-}
-
-.bio p:last-child {
-  margin-bottom: 0;
-  color: var(--ink-soft);
 }
 
 /* Биография */
@@ -1188,6 +1245,34 @@ h2 {
   object-fit: cover;
   border-radius: 2px 68px 2px 2px;
   box-shadow: 0 32px 70px rgba(3, 45, 49, .16);
+}
+
+/* Desktop: the photo spans exactly the h2 + blocks area (the eyebrow row sits above it) */
+@media (min-width: 901px) {
+  .bio-profile-grid {
+    grid-template-rows: auto auto;
+    row-gap: 0;
+    align-items: stretch;
+  }
+
+  .bio-photo {
+    position: relative;
+    grid-row: 2;
+    width: 100%;
+  }
+
+  .bio-photo img {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    aspect-ratio: auto;
+  }
+
+  .bio-facts {
+    display: grid;
+    grid-row: 1 / 3;
+    grid-template-rows: subgrid;
+  }
 }
 
 .bio-facts h2 {
@@ -1332,61 +1417,6 @@ h2 {
 
 .pub-card:hover .pub-arrow {
   transform: translate(3px, -3px);
-}
-
-/* Ideas — v1, kept for reference */
-.ideas {
-  padding: 140px 0;
-  background: var(--paper);
-}
-
-.ideas-grid {
-  display: grid;
-  grid-template-columns: .75fr 1.25fr;
-  gap: 100px;
-}
-
-.ideas-intro h2 {
-  font-size: clamp(2.8rem, 5vw, 5.5rem);
-}
-
-.ideas-intro>p:last-child {
-  max-width: 400px;
-  color: var(--ink-soft);
-}
-
-.articles {
-  border-top: 1px solid var(--line);
-}
-
-.articles a {
-  display: grid;
-  grid-template-columns: 100px 1fr 30px;
-  gap: 20px;
-  align-items: center;
-  min-height: 130px;
-  padding: 22px 8px;
-  border-bottom: 1px solid var(--line);
-  transition: padding .25s ease, color .25s ease;
-}
-
-.articles a:hover {
-  padding-inline: 20px;
-  color: var(--coral);
-}
-
-.article-tag {
-  color: var(--teal);
-  font-size: .7rem;
-  font-weight: 700;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-}
-
-.articles strong {
-  font-family: var(--display);
-  font-size: clamp(1.1rem, 2vw, 1.55rem);
-  line-height: 1.3;
 }
 
 /* Contact */
@@ -1592,8 +1622,7 @@ footer>p {
     padding-block: 120px 110px;
   }
 
-  .perspective-grid,
-  .ideas-grid {
+  .perspective-grid {
     grid-template-columns: 1fr;
     gap: 52px;
   }
@@ -1693,10 +1722,6 @@ footer>p {
     width: min(440px, calc(100% - 22px));
   }
 
-  .bio-inner {
-    grid-template-columns: 1fr;
-  }
-
   footer {
     grid-template-columns: 1fr;
     gap: 28px;
@@ -1769,7 +1794,6 @@ footer>p {
   .perspective,
   .two-directions,
   .business,
-  .ideas,
   .writing,
   .bio-profile {
     padding-block: 88px;
@@ -1910,22 +1934,9 @@ footer>p {
     border-top: 1px solid var(--t-line);
   }
 
-  .articles a {
-    grid-template-columns: 1fr 26px;
-    min-height: 116px;
-  }
-
-  .article-tag {
-    grid-column: 1 / -1;
-  }
-
   .footer-links {
     flex-direction: column;
     gap: 10px;
-  }
-
-  .bio-inner {
-    padding: 36px 24px;
   }
 
   .contact-actions {
