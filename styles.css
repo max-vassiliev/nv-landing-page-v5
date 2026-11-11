@@ -233,15 +233,16 @@ h2 {
   padding-block: 147px 140px;
 }
 
-.hero h1 {
+.hero .hero-title {
   margin: 0 0 59px;
+  font-family: var(--display);
   font-size: clamp(2.6rem, 5.4vw, 4.625rem);
   font-weight: 600;
   line-height: 1.16;
   letter-spacing: -0.052em;
 }
 
-.hero h1 em {
+.hero .hero-title em {
   color: var(--coral);
   font-family: var(--serif);
   font-size: 1.108em;
@@ -285,9 +286,14 @@ h2 {
   border-left: 4px solid var(--aqua);
 }
 
-.signature strong {
+/* Page H1, styled to look like the original <strong> signature name */
+.signature h1 {
+  margin: 0;
+  font-family: inherit;
   font-size: clamp(1.4rem, 2vw, 1.875rem);
+  font-weight: 700;
   line-height: 22px;
+  letter-spacing: inherit;
 }
 
 .signature span {
@@ -396,7 +402,7 @@ h2 {
   padding-top: var(--hero-top-space);
 }
 
-.hero--compact h1 {
+.hero--compact .hero-title {
   font-size: var(--hero-h1-size);
 }
 
@@ -404,7 +410,7 @@ h2 {
   font-size: var(--hero-lead-size);
 }
 
-.hero--compact .signature strong {
+.hero--compact .signature h1 {
   font-size: var(--hero-sig-name-size);
 }
 
@@ -1930,7 +1936,7 @@ footer > p {
     padding-block: 56px 80px;
   }
 
-  .hero h1 {
+  .hero .hero-title {
     margin-bottom: 36px;
     font-size: clamp(2.1rem, 10vw, 2.9rem);
   }
