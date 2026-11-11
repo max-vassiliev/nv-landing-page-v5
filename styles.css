@@ -446,7 +446,7 @@ h2 {
 
 /* About */
 .perspective {
-  padding: 210px 0 174px;
+  padding: 130px 0 150px;
   background: var(--white);
 }
 
@@ -498,9 +498,10 @@ h2 {
   line-height: 1.286;
 }
 
+/* Facts: number above its label, centered columns */
 .facts {
   display: grid;
-  grid-template-columns: 340fr 250fr 590fr;
+  grid-template-columns: repeat(3, 1fr);
   margin-top: 71px;
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
@@ -509,54 +510,27 @@ h2 {
 .facts div {
   display: flex;
   flex-direction: column;
-  min-height: 150px;
-  padding: 28px 30px 24px 22px;
-}
-
-.facts div + div {
-  padding-left: 30px;
-  border-left: 1px solid var(--line);
-}
-
-.facts strong {
-  font-family: var(--display);
-  font-size: clamp(2.2rem, 3.4vw, 3.2rem);
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: -0.045em;
-}
-
-.facts span {
-  margin-top: 14px;
-  color: var(--ink-soft);
-  font-size: 1rem;
-  font-weight: 500;
-  line-height: 1.2;
-}
-
-/* facts-stacked: number above its label, centered columns */
-.facts-stacked {
-  grid-template-columns: repeat(3, 1fr);
-}
-
-.facts-stacked div,
-.facts-stacked div + div {
   align-items: center;
-  min-height: 0;
   padding: 30px 26px 50px;
   text-align: center;
 }
 
-.facts-stacked strong {
+.facts div + div {
+  border-left: 1px solid var(--line);
+}
+
+.facts strong {
   display: flex;
   flex-direction: column;
   align-items: center;
   row-gap: 4px;
+  font-family: var(--display);
   font-size: 1rem;
-  letter-spacing: normal;
+  font-weight: 700;
+  line-height: 1;
 }
 
-.facts-stacked .fact-num {
+.facts .fact-num {
   font-family: var(--serif);
   font-size: clamp(3rem, 5.5vw, 4.4rem);
   font-weight: 600;
@@ -564,18 +538,19 @@ h2 {
   letter-spacing: -0.045em;
 }
 
-.facts-stacked .fact-unit {
+.facts .fact-unit {
   font-size: clamp(1.05rem, 1.6vw, 1.2rem);
   font-weight: 500;
   line-height: 1;
   letter-spacing: -0.01em;
 }
 
-.facts-stacked span {
+.facts span {
   margin-top: 30px;
   max-width: 32ch;
   color: #556763;
   font-size: clamp(1rem, 1.3vw, 1.1rem);
+  font-weight: 500;
   line-height: 1.4;
   text-wrap: pretty;
 }
@@ -1366,7 +1341,11 @@ h2 {
   margin: 0 0 16px;
   color: var(--ink-soft);
   font-family: var(--grotesk);
-  font-size: clamp(1.05rem, 1.5vw, 1.2rem); /* 16.8 → 19.2px; full size from ~1280px */
+  font-size: clamp(
+    1.05rem,
+    1.5vw,
+    1.2rem
+  ); /* 16.8 → 19.2px; full size from ~1280px */
   line-height: 1.4;
 }
 
@@ -1814,7 +1793,7 @@ footer > p {
   }
 
   .perspective {
-    padding-block: 120px 110px;
+    padding-block: 60px 110px;
   }
 
   .perspective-grid {
@@ -1842,13 +1821,8 @@ footer > p {
 
   .facts div:last-child {
     grid-column: 1 / -1;
-    padding-left: 22px;
     border-left: 0;
     border-top: 1px solid var(--line);
-  }
-
-  .facts-stacked div:last-child {
-    padding-left: 26px;
   }
 
   .foundation {
@@ -2003,6 +1977,10 @@ footer > p {
     padding-block: 88px;
   }
 
+  .perspective {
+    padding-top: 44px;
+  }
+
   .bio-photo img {
     border-radius: 2px 48px 2px 2px;
   }
@@ -2025,22 +2003,13 @@ footer > p {
     grid-template-columns: 1fr;
   }
 
-  .facts div,
-  .facts div:last-child {
-    min-height: auto;
-    padding: 24px 0;
+  .facts div {
+    padding: 30px 0 50px;
   }
 
   .facts div + div {
-    padding-left: 0;
     border-left: 0;
     border-top: 1px solid var(--line);
-  }
-
-  .facts-stacked div,
-  .facts-stacked div:last-child {
-    padding-top: 30px;
-    padding-bottom: 50px;
   }
 
   .foundation {
